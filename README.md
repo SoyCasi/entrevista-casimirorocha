@@ -1,0 +1,23 @@
+# entrevista-casimirorocha
+## Docker & make instructions ##
+To deploy locally or remotely you'll need [docker-compose](https://docs.docker.com/compose/install/) and [docker-engine](https://docs.docker.com/engine/installation/linux/ubuntulinux/)
+You can just copy and paste the following commands:
+
+```bash
+sudo apt-get install apt-transport-https ca-certificates
+sudo apt update
+sudo apt upgrade
+sudo apt install --reinstall linux-image-generic
+sudo apt install linux-modules-extra-$(uname -r) linux-image-extra-virtual
+wget -qO- https://get.docker.com/ | sh
+sudo usermod -aG docker $USER
+sudo curl -L "https://github.com/docker/compose/releases/download/1.9.0/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+sudo chmod +x /usr/local/bin/docker-compose
+sudo apt install make
+```
+Normally you'll only run inside the repository `sudo docker-compose build` only once in a while, then docker-compose up -d. To access the container run `docker exec -ti revsys-container bash` 
+Inside the container if you want to check how it was developed the reviewer analyzer run `jupyter notebook` and access the file `recsys/Sentiment Analysis.ipynb`
+
+To test the review evaluator run in the container `python review_evaluator.py` and add with quotes the review in spanish, i.e:
+
+"11 años pasaron desde el primer capítulo en la historia del MCU, comenzando con Iron Man en 2008. 21 películas vieron la luz antes de que Avengers: Endgame finalizara con esta era y ahora está más cerca que nunca. Seamos sinceros: desde que Avengers: Infinity War llegó a su fin en 2018, quedamos con miles de cuestionamientos. Vimos morir a muchos de nuestros superhéroes favoritos con el estruendoso chasquido de Thanos, así que la conclusión a esta etapa tenía que resolver todos esos cabos sueltos y brindar un alivio a ese trago amargo que muchos de los fanáticos sentimos. En Avengers: Endgame, los sobrevivientes deben reunirse para deshacer las terribles acciones de aquel sujeto morado, gigante y de barba partida. Los superhéroes tienen que restaurar el orden del universo sin importar cuáles sean las consecuencias, pero ¿lo lograrán? Avengers: Endgame es una hermosa carta de amor a todos los que hemos estado detrás de las historias de personajes entrañables como Iron Man, Capitán América, Thor, Black Widow, Hawkeye, Hulk y todos los demás que han tenido cabida en el Universo Cinematográfico de Marvel. Nostalgia es la palabra que define a este largometraje incluso se queda corta. Existe lo épico y después está Avengers: Endgame. Siempre he vivido bajo la creencia de que la utopía, como concepto, sólo existe para que siempre intentemos alcanzarla, pero Marvel la rebasó. La película es una montaña rusa de emociones. Ríes, lloras, vuelves a reír y a llorar y después todo al mismo tiempo. Ver Avengers: Endgame es como ser niño otra vez como cuando te pones triste porque te apagan la televisión, pero vuelves a ser feliz yendo al parque para comer un simple helado. Siento que estoy escupiendo un arcoíris, pero la película está llena de emoción y eso que no estoy mencionando los inesperados giros de tuerca, los coherentes hilos argumentales, los encuentros en las batallas y la indiscutible evolución de cada personaje. Algunos detalles ya se veían venir, pero pocas especulaciones y teorías alocadas se cumplieron. Avengers: Endgame dura tres horas, pero no se sienten. A diferencia de Infinity War, esta película hace un recorrido a la historia, contexto y origen de cada personaje vuelven a ser presentados, algo que se agradece y es bien recibido porque crecimos con ellos y aprendimos de ellos. No necesitas ser fan de hueso colorado para comprender el argumento de Endgame, pero si te sobran más de 60 horas en tu vida, podrías ver todas las películas del MCU para entender absolutamente todas las referencias que aparecen. Eso sí, ver Endgame tiene ciertas exigencias, así que hay algunas películas obligadas que debes ver sí o sí para no llegar en ceros. Te las dejamos en este enlace. Esperaba muchas cosas de Avengers: Endgame, pero nunca esto y creo que no pudo concluir de mejor forma. La película rompe con la fórmula tradicional por la que se ha regido el género y lo hace de manera simple y sin rodeos. Sin miedo a aventurarme, podría decir que esta película abre las puertas a una nueva etapa de evolución o resurrección… ¿Cómo lo resolvería Marvel? Eso está por verse. Avengers: Endgame se estrena muy pronto, así que ve preparando muchos pañuelos y procura ir acompañado para que puedas expresar y compartir tu experiencia. Yo ya no sé cómo continuar con mi vida después de esto. Aunque el resultado sea satisfactorio, quedarás con un vacío que difícilmente podrás llenar."
