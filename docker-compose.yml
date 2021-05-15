@@ -1,0 +1,29 @@
+version: "3"
+
+services:
+  review-analyzer:
+    restart: always
+    build:
+      context: ./recsys
+      dockerfile: DockerfileAdminGw
+    image: revsys
+    container_name: revsys-container
+    working_dir: /usr/src/app
+    volumes:
+      - ./recsys:/usr/src/app
+    environment:
+      - LOGLEVEL=DEBUG
+      - DEBUG=true
+    ports:
+      - 8888:8888
+    stdin_open: true
+    tty: true
+    networks:
+      - api-tier
+      - back-tier
+
+networks:
+  api-tier:
+    driver: bridge
+  back-tier:
+    driver: bridge

@@ -1,0 +1,13 @@
+FROM python:3.7-buster
+
+RUN pip install --upgrade pip
+
+RUN mkdir -p /config
+ADD requirements.txt /config/
+RUN pip install -r /config/requirements.txt
+
+RUN apt-get update
+RUN apt-get install gettext -y
+RUN python -m spacy download es_core_news_sm
+
+COPY . /usr/src/app
